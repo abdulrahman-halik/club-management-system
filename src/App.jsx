@@ -1,19 +1,21 @@
-import { useState } from 'react'
-import './index.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import './index.css';
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="p-8 bg-white rounded-lg shadow-md text-center">
-        <h1 className="text-3xl font-bold text-blue-600 mb-4">
-          United Cricket Club
-        </h1>
-        <p className="text-gray-600">
-          Front-End Setup Complete with Tailwind v4!
-        </p>
-      </div>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          {/* Future routes will go here */}
+          <Route path="about" element={<div className="p-8 text-center text-xl">About Page (Coming Soon)</div>} />
+          <Route path="*" element={<div className="p-8 text-center text-xl">404 - Page Not Found</div>} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
