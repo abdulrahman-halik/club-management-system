@@ -234,5 +234,5 @@ src/
 *   **`components/ui`**: Highly reusable base components. These are "dumb" components that receive props and render UI (e.g., `Button`, `Input`).
 *   **`features/`**: The core of the application logic. Each folder here corresponds roughly to one of the 7 phases.
     *   *Self-Containment*: Each feature folder should ideally contain its own unique components, constants, and hooks to prevent the `src/components` folder from becoming bloated with domain-specific logic.
-*   **`lib/`**: Helpers and configurations. `utils.js` for things like `clsx` or `tailwind-merge` class merging.
+*   **`lib/`**: Helpers and configurations. `utils.js` for things like 
 *   **`admin/`**: While technically a feature, the admin section often has its own layout and distinct styling needs, so it's isolated within `features/admin`.
