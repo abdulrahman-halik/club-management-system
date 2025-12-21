@@ -1,16 +1,19 @@
 import React from 'react';
 import NewsletterSignup from '../components/features/NewsletterSignup';
-import { MapPin } from 'lucide-react';
+import { MapPin, Eye, Target } from 'lucide-react';
+import studyImg from '../assets/images/study.jpeg';
+import stadiumImg from '../assets/images/stadium.jpeg';
+import communityImg from '../assets/images/community.jpeg';
 
 const Home = () => {
     return (
         <div className="animate-in fade-in duration-500">
 
             {/* Hero Section */}
-            <section className="bg-blue-900 text-white py-20 px-4">
+            <section className="bg-blue-900 text-white py-10 px-4">
                 <div className="container mx-auto text-center">
                     <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
-                        United Cricket Club
+                        United Youth Club
                     </h1>
                     <p className="text-xl md:text-2xl font-light opacity-90 italic mb-8">
                         "United We Play"
@@ -28,19 +31,51 @@ const Home = () => {
 
             {/* About Section */}
             <section id="about" className="py-16 bg-white">
-                <div className="container mx-auto px-4 max-w-4xl">
+                <div className="container mx-auto px-4 max-w-6xl">
+                    {/* Images Row */}
+                    <div className="grid md:grid-cols-3 gap-8 mb-12">
+                        <div className="overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
+                            <img
+                                src={studyImg}
+                                alt="Study and preparation"
+                                className="w-full h-64 object-cover"
+                            />
+                        </div>
+                        <div className="overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
+                            <img
+                                src={stadiumImg}
+                                alt="Cricket stadium"
+                                className="size-full h-64 object-cover"
+                            />
+                        </div>
+                        <div className="overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
+                            <img
+                                src={communityImg}
+                                alt="Community and social work"
+                                className="size-full h-64 object-cover"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Vision and Mission Content */}
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div className="space-y-6">
-                            <h2 className="text-3xl font-bold text-gray-900">Our Vision</h2>
+                            <div className="flex items-center space-x-3">
+                                <Eye className="text-blue-600 w-8 h-8" />
+                                <h2 className="text-3xl font-bold text-gray-900">Our Vision</h2>
+                            </div>
                             <p className="text-lg text-gray-700 leading-relaxed">
                                 To be the premier cricket development hub in the region, known for excellence and sportsmanship.
                             </p>
                             <div className="h-1 w-20 bg-blue-500 rounded"></div>
                         </div>
                         <div className="space-y-6">
-                            <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
+                            <div className="flex items-center space-x-3">
+                                <Target className="text-blue-600 w-8 h-8" />
+                                <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
+                            </div>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                Fostering talent through discipline, community, and the undying spirit of the game. We believe in nurturing the next generation of cricketers.
+                                Fostering talent through discipline, community, and the undying spirit of the game.
                             </p>
                             <div className="h-1 w-20 bg-blue-500 rounded"></div>
                         </div>
@@ -49,7 +84,7 @@ const Home = () => {
             </section>
 
             {/* Location Section */}
-            <section className="py-16 bg-gray-50">
+            <section className="py-8 bg-gray-50">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-gray-900 flex items-center justify-center">
@@ -74,13 +109,14 @@ const Home = () => {
                         <div className="p-8 md:w-1/3 flex flex-col justify-center bg-gray-900 text-white">
                             <h3 className="text-xl font-bold mb-4">Clubhouse Address</h3>
                             <p className="mb-6 opacity-80">
-                                123 Cricket Lane,<br />
-                                Sports City, SC 54321
+                                Allewewa Muslim School Ground,<br />
+                                Allewewa,<br />
+                                Kebithigollewa
                             </p>
                             <h4 className="font-semibold mb-2">Training Hours</h4>
                             <p className="text-sm opacity-80">
                                 Sat - Sun: 7:00 AM - 11:00 AM<br />
-                                Tue - Thu: 5:00 PM - 8:00 PM
+                                Mon - Fri: 4:00 PM - 6:00 PM
                             </p>
                         </div>
                     </div>

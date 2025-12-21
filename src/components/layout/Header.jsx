@@ -12,7 +12,7 @@ const Header = () => {
                     {/* Logo / Brand */}
                     <div className="flex-shrink-0 flex items-center">
                         <Link to="/" className="text-2xl font-bold text-blue-900 tracking-tight">
-                            United Cricket Club
+                            UYC
                         </Link>
                     </div>
 

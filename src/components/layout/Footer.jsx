@@ -11,7 +11,7 @@ const Footer = () => {
 
                     {/* Brand & Socials */}
                     <div className="space-y-4">
-                        <h3 className="text-2xl font-bold text-white tracking-tight">United Cricket Club</h3>
+                        <h3 className="text-2xl font-bold text-white tracking-tight">United Youth Club</h3>
                         <p className="text-sm">United We Play. Fostering talent and community through the spirit of cricket.</p>
                         <div className="flex space-x-4 pt-2">
                             <a href="https://twitter.com" className="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
@@ -43,7 +43,7 @@ const Footer = () => {
                         <ul className="space-y-3 text-sm">
                             <li className="flex items-start">
                                 <MapPin size={18} className="mr-2 mt-0.5 text-blue-500 flex-shrink-0" />
-                                <span>123 Cricket Lane,<br />Sports City, SC 54321</span>
+                                <span>Allewewa Muslim School Ground,<br />Allewewa,<br />Kebithigollewa</span>
                             </li>
                             <li className="flex items-center">
                                 <Phone size={18} className="mr-2 text-blue-500 flex-shrink-0" />
