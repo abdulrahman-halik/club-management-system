@@ -69,28 +69,77 @@ const Home = () => {
             {/* About Section */}
             <section id="about" className="py-16 bg-white">
                 <div className="container mx-auto px-4 max-w-6xl">
-                    {/* Images Row */}
-                    <div className="grid md:grid-cols-3 gap-8 mb-12">
-                        <div className="overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                            <img
-                                src={studyImg}
-                                alt="Study and preparation"
-                                className="w-full h-64 object-cover"
-                            />
+                    {/* Our Activities Section */}
+                    <div className="mb-16">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                                Our Activities
+                            </h2>
+                            <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                                Explore the diverse ways we engage and empower our youth, from academic excellence to sporting glory and cultural celebration.
+                            </p>
                         </div>
-                        <div className="overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                            <img
-                                src={stadiumImg}
-                                alt="Cricket stadium"
-                                className="w-full h-64 object-cover"
-                            />
-                        </div>
-                        <div className="overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105">
-                            <img
-                                src={communityImg}
-                                alt="Community and social work"
-                                className="w-full h-64 object-cover"
-                            />
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {/* Academic Classes Card */}
+                            <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                                <div className="relative h-56 overflow-hidden">
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
+                                    <img
+                                        src={studyImg}
+                                        alt="Academic Classes"
+                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                                        Academic Classes
+                                    </h3>
+                                    <p className="text-gray-600 text-sm leading-relaxed">
+                                        Supporting student athletes with dedicated study sessions and tutoring to ensure academic excellence alongside sports.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Cricket Matches Card */}
+                            <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                                <div className="relative h-56 overflow-hidden">
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
+                                    <img
+                                        src={stadiumImg}
+                                        alt="Cricket Matches"
+                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                                        Cricket Matches
+                                    </h3>
+                                    <p className="text-gray-600 text-sm leading-relaxed">
+                                        Hosting competitive leagues and friendly matches in top-tier facilities, fostering teamwork and sportsmanship.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Cultural Events Card */}
+                            <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                                <div className="relative h-56 overflow-hidden">
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
+                                    <img
+                                        src={communityImg}
+                                        alt="Cultural Events"
+                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                                        Cultural Events
+                                    </h3>
+                                    <p className="text-gray-600 text-sm leading-relaxed">
+                                        Celebrating diversity through festivals, community gatherings, and cultural programs that unite our members.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
