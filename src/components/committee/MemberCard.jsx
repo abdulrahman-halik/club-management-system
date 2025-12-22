@@ -8,12 +8,10 @@ const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
     // Featured Card (President)
     if (isFeatured) {
         return (
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 max-w-lg mx-auto">
-                <div className="p-8 flex flex-col items-center text-center">
-                    <div className="relative mb-6">
-                        {/* Decorative background circle */}
-                        <div className="absolute inset-0 bg-blue-100 rounded-full scale-110 transform rotate-45"></div>
-                        <div className="relative z-10 w-40 h-40 bg-white p-1 rounded-full shadow-lg">
+            <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 max-w-sm mx-auto">
+                <div className="p-6 flex flex-col items-center text-center">
+                    <div className="relative mb-4">
+                        <div className="w-32 h-32 bg-white p-1 rounded-full shadow-md">
                             {member.photo ? (
                                 <img
                                     src={member.photo}
@@ -22,30 +20,26 @@ const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
                                 />
                             ) : (
                                 <div className="w-full h-full rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
-                                    <User size={80} />
+                                    <User size={60} />
                                 </div>
                             )}
                         </div>
-                        {/* Badge */}
-                        <div className="absolute bottom-2 right-2 z-20 bg-blue-600 text-white p-2 rounded-full shadow-md">
-                            <User size={16} fill="currentColor" />
-                        </div>
                     </div>
 
-                    <h3 className="text-3xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                    <p className="text-xl text-blue-600 font-semibold mb-6">{member.role}</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                    <p className="text-lg text-blue-600 font-medium mb-3">{member.role}</p>
 
                     {member.bio && (
-                        <p className="text-gray-600 mb-8 max-w-md leading-relaxed">
+                        <p className="text-gray-600 mb-6 text-sm leading-relaxed line-clamp-3">
                             {member.bio}
                         </p>
                     )}
 
                     <button
                         onClick={() => onContactClick(member)}
-                        className="w-full sm:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2"
+                        className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md hover:shadow-blue-500/20 transition-all flex items-center justify-center gap-2 text-sm"
                     >
-                        <Mail size={18} />
+                        <Mail size={16} />
                         Contact President
                     </button>
                 </div>

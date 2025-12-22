@@ -27,7 +27,7 @@ const Committee = () => {
     return (
         <div className="container mx-auto px-4 py-8 md:py-16 bg-gray-50/50 min-h-screen">
             <div className="text-center mb-16">
-                <h1 className="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Club Leadership</h1>
+                <h1 className="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Board of Committee Members</h1>
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
                     Meet the dedicated team driving our cricket club forward for the 2024 season.
                 </p>
