@@ -1,20 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Facebook, Instagram, Twitter, MapPin, Phone, Mail } from 'lucide-react';
-import Modal from '../ui/Modal';
+import { Menu, X, Facebook, Instagram, Twitter } from 'lucide-react';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
-
-    const openContactModal = (e) => {
-        e.preventDefault();
-        setIsContactModalOpen(true);
-        setIsMenuOpen(false); // Close mobile menu if open
-    };
 
     return (
-        <header className="bg-white shadow-md sticky top-0 z-50">
+        <header className="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all duration-300">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo / Brand */}
@@ -35,12 +27,12 @@ const Header = () => {
                         <Link to="/about" className="text-gray-700 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                             About
                         </Link>
-                        <button
-                            onClick={openContactModal}
-                            className="text-gray-700 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium transition-colors focus:outline-none"
+                        <Link
+                            to="/contact"
+                            className="text-gray-700 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                         >
                             Contact
-                        </button>
+                        </Link>
                     </nav>
 
                     {/* Auth Buttons & Socials - Right Side */}
@@ -82,7 +74,7 @@ const Header = () => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden bg-white border-b border-gray-100 animate-in slide-in-from-top-2 duration-200">
+                <div className="md:hidden bg-white/95 backdrop-blur-md border-b border-gray-100 animate-in slide-in-from-top-2 duration-200">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <Link
                             to="/"
@@ -105,12 +97,13 @@ const Header = () => {
                         >
                             About
                         </Link>
-                        <button
-                            onClick={openContactModal}
-                            className="text-gray-700 hover:text-blue-900 block w-full text-left px-3 py-2 rounded-md text-base font-medium focus:outline-none"
+                        <Link
+                            to="/contact"
+                            className="text-gray-700 hover:text-blue-900 block w-full text-left px-3 py-2 rounded-md text-base font-medium"
+                            onClick={() => setIsMenuOpen(false)}
                         >
                             Contact
-                        </button>
+                        </Link>
 
                         <div className="border-t border-gray-100 my-2 pt-2">
                             <Link
@@ -143,68 +136,6 @@ const Header = () => {
                     </div>
                 </div>
             )}
-
-            {/* Contact Modal */}
-            <Modal
-                isOpen={isContactModalOpen}
-                onClose={() => setIsContactModalOpen(false)}
-                title="Contact Us"
-            >
-                <div className="space-y-6">
-                    <p className="text-gray-600">
-                        We'd love to hear from you. Reach out to us for any inquiries or information.
-                    </p>
-
-                    <div className="space-y-4">
-                        <div className="flex items-start">
-                            <div className="flex-shrink-0">
-                                <MapPin className="h-6 w-6 text-blue-600" />
-                            </div>
-                            <div className="ml-3 text-base text-gray-700">
-                                <p className="font-medium text-gray-900">Address</p>
-                                <p className="mt-1">Allewewa Muslim School Ground,<br />Allewewa,<br />Kebithigollewa</p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center">
-                            <div className="flex-shrink-0">
-                                <Phone className="h-6 w-6 text-blue-600" />
-                            </div>
-                            <div className="ml-3 text-base text-gray-700">
-                                <p className="font-medium text-gray-900">Phone</p>
-                                <a href="tel:+1234567890" className="mt-1 block hover:text-blue-600 transition-colors">+1 (234) 567-890</a>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center">
-                            <div className="flex-shrink-0">
-                                <Mail className="h-6 w-6 text-blue-600" />
-                            </div>
-                            <div className="ml-3 text-base text-gray-700">
-                                <p className="font-medium text-gray-900">Email</p>
-                                <a href="mailto:info@unitedcricket.com" className="mt-1 block hover:text-blue-600 transition-colors">info@unitedcricket.com</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-gray-100">
-                        <p className="text-sm text-gray-500 text-center">
-                            Follow us on social media
-                        </p>
-                        <div className="flex justify-center space-x-6 mt-4">
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
-                                <Twitter size={24} />
-                            </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-600 transition-colors">
-                                <Instagram size={24} />
-                            </a>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-800 transition-colors">
-                                <Facebook size={24} />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </Modal>
         </header>
     );
 };
