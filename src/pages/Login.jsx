@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Trophy, Mail, Lock } from 'lucide-react';
-import clubImg from '../assets/logos/logo1.png'; // Using as a placeholder for the logo if needed, or I'll use text as primary
+
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);

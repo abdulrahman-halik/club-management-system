@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Trophy, User, Mail, Lock, PenTool } from 'lucide-react';
-import clubImg from '../assets/logos/logo1.png'; // Placeholder
+
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);

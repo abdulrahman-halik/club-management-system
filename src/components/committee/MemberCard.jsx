@@ -3,7 +3,7 @@ import { User, Mail, Phone, ChevronRight, ArrowRight } from 'lucide-react';
 const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
     const isFeatured = variant === 'featured';
     const isCompact = variant === 'compact';
-    const isStandard = variant === 'standard';
+
 
     // Featured Card (President)
     if (isFeatured) {

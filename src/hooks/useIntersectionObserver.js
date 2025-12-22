@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useIntersectionObserver = (options = {}) => {
+const useIntersectionObserver = ({
+    threshold = 0.1,
+    root = null,
+    rootMargin = '0px',
+    freezeOnceVisible = false,
+} = {}) => {
     const elementRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -9,13 +14,13 @@ const useIntersectionObserver = (options = {}) => {
             if (entry.isIntersecting) {
                 setIsVisible(true);
                 // Optional: Stop observing once visible if we only want the animation to happen once
-                if (options.freezeOnceVisible) {
+                if (freezeOnceVisible) {
                     observer.unobserve(entry.target);
                 }
-            } else if (!options.freezeOnceVisible) {
+            } else if (!freezeOnceVisible) {
                 setIsVisible(false);
             }
-        }, { threshold: 0.1, ...options });
+        }, { threshold, root, rootMargin });
 
         const currentElement = elementRef.current;
         if (currentElement) {
@@ -27,7 +32,7 @@ const useIntersectionObserver = (options = {}) => {
                 observer.unobserve(currentElement);
             }
         };
-    }, [options.threshold, options.root, options.rootMargin, options.freezeOnceVisible]);
+    }, [threshold, root, rootMargin, freezeOnceVisible]);
 
     return [elementRef, isVisible];
 };
