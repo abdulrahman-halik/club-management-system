@@ -22,7 +22,7 @@ const Contact = () => {
     };
 
     return (
-        <div className="bg-gray-50 min-h-screen pt-16 pb-12">
+        <div className="bg-gray-50 min-h-screen pb-12">
             {/* Hero Section */}
             <div className="bg-blue-900 text-white py-20 px-4">
                 <div className="container mx-auto text-center">
