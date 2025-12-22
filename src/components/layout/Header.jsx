@@ -41,19 +41,30 @@ const Header = () => {
                         >
                             Contact
                         </button>
-                        {/* Social Icons for Desktop */}
-                        <div className="flex items-center space-x-4 border-l pl-6 border-gray-200 ml-4">
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-500 hover:text-blue-400 transition-colors">
-                                <Twitter size={20} />
+                    </nav>
+
+                    {/* Auth Buttons & Socials - Right Side */}
+                    <div className="hidden md:flex items-center space-x-4">
+                        <Link to="/login" className="text-gray-700 hover:text-blue-900 font-bold text-sm transition-colors">
+                            Login
+                        </Link>
+                        <Link to="/register" className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-bold text-sm transition-all shadow-md hover:shadow-lg">
+                            Join Us
+                        </Link>
+
+                        {/* Social Icons */}
+                        <div className="flex items-center space-x-3 border-l pl-4 border-gray-200 ml-2">
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-400 hover:text-blue-400 transition-colors">
+                                <Twitter size={18} />
                             </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-500 hover:text-pink-600 transition-colors">
-                                <Instagram size={20} />
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-pink-600 transition-colors">
+                                <Instagram size={18} />
                             </a>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-500 hover:text-blue-800 transition-colors">
-                                <Facebook size={20} />
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-400 hover:text-blue-800 transition-colors">
+                                <Facebook size={18} />
                             </a>
                         </div>
-                    </nav>
+                    </div>
 
                     {/* Mobile Menu Button */}
                     <div className="flex items-center md:hidden">
@@ -71,7 +82,7 @@ const Header = () => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden bg-white border-b border-gray-100">
+                <div className="md:hidden bg-white border-b border-gray-100 animate-in slide-in-from-top-2 duration-200">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <Link
                             to="/"
@@ -100,6 +111,24 @@ const Header = () => {
                         >
                             Contact
                         </button>
+
+                        <div className="border-t border-gray-100 my-2 pt-2">
+                            <Link
+                                to="/login"
+                                className="text-gray-700 hover:text-blue-900 block px-3 py-2 rounded-md text-base font-medium"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to="/register"
+                                className="text-blue-600 font-bold block px-3 py-2 rounded-md text-base"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Join Us
+                            </Link>
+                        </div>
+
                         <div className="flex space-x-6 px-3 py-4 border-t border-gray-100 mt-2">
                             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-500 hover:text-blue-400">
                                 <Twitter size={24} />
