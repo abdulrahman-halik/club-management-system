@@ -20,10 +20,10 @@ const Login = () => {
     // Compact Login UI
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 font-sans">
-            <div className="max-w-[1000px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row min-h-[550px] lg:h-[650px]">
+            <div className="max-w-[850px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row min-h-[500px] lg:h-[550px]">
 
                 {/* Left Side - Blue Branding Section */}
-                <div className="w-full lg:w-[45%] bg-gradient-to-br from-[#1e6091] to-[#164a75] p-8 lg:p-12 text-white relative flex flex-col justify-between">
+                <div className="w-full lg:w-[45%] bg-gradient-to-br from-[#1e6091] to-[#164a75] p-6 lg:p-10 text-white relative flex flex-col justify-between">
                     {/* Background decorations */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
                     <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl"></div>
@@ -46,13 +46,13 @@ const Login = () => {
                     </div>
 
                     <div className="relative z-10 flex flex-col items-center text-center my-auto">
-                        <h1 className="text-3xl lg:text-4xl font-extrabold mb-4 leading-tight">
+                        <h1 className="text-2xl lg:text-3xl font-extrabold mb-3 leading-tight">
                             Welcome to <br /> CricZone
                         </h1>
-                        <p className="text-blue-100 text-sm max-w-xs leading-relaxed mb-6">
+                        <p className="text-blue-100 text-sm max-w-xs leading-relaxed mb-5">
                             Join the ultimate community for cricket enthusiasts.
                         </p>
-                        <button className="px-6 py-2 border-2 border-white/30 hover:bg-white/10 rounded-full text-xs font-medium transition-colors backdrop-blur-sm">
+                        <button className="px-5 py-2 border-2 border-white/30 hover:bg-white/10 rounded-full text-xs font-medium transition-colors backdrop-blur-sm">
                             Learn More
                         </button>
                     </div>
@@ -67,26 +67,26 @@ const Login = () => {
                 </div>
 
                 {/* Right Side - Login Form */}
-                <div className="w-full lg:w-[55%] p-8 lg:p-12 flex flex-col justify-center bg-white relative">
+                <div className="w-full lg:w-[55%] p-6 lg:p-10 flex flex-col justify-center bg-white relative">
                     <div className="max-w-sm w-full mx-auto">
-                        <div className="text-center mb-8">
-                            <div className="w-12 h-12 bg-blue-50/50 rounded-xl shadow-sm flex items-center justify-center mx-auto mb-3 text-[#1e6091]">
-                                <Trophy className="w-6 h-6" />
+                        <div className="text-center mb-6">
+                            <div className="w-10 h-10 bg-blue-50/50 rounded-xl shadow-sm flex items-center justify-center mx-auto mb-3 text-[#1e6091]">
+                                <Trophy className="w-5 h-5" />
                             </div>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-1">Welcome Back</h2>
-                            <p className="text-gray-500 text-sm">Please enter your details to sign in</p>
+                            <h2 className="text-xl font-bold text-gray-900 mb-1">Welcome Back</h2>
+                            <p className="text-gray-500 text-xs">Please enter your details to sign in</p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-3">
                             <div>
-                                <label className="block text-xs font-medium text-gray-700 mb-1.5">Email Address</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Email Address</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                                        <Mail size={18} />
+                                        <Mail size={16} />
                                     </div>
                                     <input
                                         type="email"
-                                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:border-[#1e6091] focus:ring-2 focus:ring-[#1e6091]/10 outline-none transition-all text-sm text-gray-700 placeholder-gray-400 bg-gray-50/50 focus:bg-white"
+                                        className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#1e6091] focus:ring-2 focus:ring-[#1e6091]/10 outline-none transition-all text-sm text-gray-700 placeholder-gray-400 bg-gray-50/50 focus:bg-white"
                                         placeholder="Enter your Email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -96,14 +96,14 @@ const Login = () => {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-medium text-gray-700 mb-1.5">Password</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Password</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                                        <Lock size={18} />
+                                        <Lock size={16} />
                                     </div>
                                     <input
                                         type={showPassword ? "text" : "password"}
-                                        className="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-200 focus:border-[#1e6091] focus:ring-2 focus:ring-[#1e6091]/10 outline-none transition-all text-sm text-gray-700 placeholder-gray-400 bg-gray-50/50 focus:bg-white"
+                                        className="w-full pl-9 pr-10 py-2.5 rounded-lg border border-gray-200 focus:border-[#1e6091] focus:ring-2 focus:ring-[#1e6091]/10 outline-none transition-all text-sm text-gray-700 placeholder-gray-400 bg-gray-50/50 focus:bg-white"
                                         placeholder="Enter your Password"
                                         value={formData.password}
                                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -114,7 +114,7 @@ const Login = () => {
                                         onClick={() => setShowPassword(!showPassword)}
                                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
                                     >
-                                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                     </button>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@ const Login = () => {
 
                             <button
                                 type="submit"
-                                className="w-full bg-[#1e6091] text-white py-3 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 hover:bg-[#164a75] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                                className="w-full bg-[#1e6091] text-white py-2.5 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 hover:bg-[#164a75] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                             >
                                 Login
                             </button>
