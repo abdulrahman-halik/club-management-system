@@ -24,6 +24,9 @@ const Header = () => {
                         <Link to="/committee" className="text-gray-700 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                             Committee
                         </Link>
+                        <Link to="/members" className="text-gray-700 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Members
+                        </Link>
                         <Link to="/about" className="text-gray-700 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                             About
                         </Link>
@@ -89,6 +92,13 @@ const Header = () => {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Committee
+                        </Link>
+                        <Link
+                            to="/members"
+                            className="text-gray-700 hover:text-blue-900 block px-3 py-2 rounded-md text-base font-medium"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Members
                         </Link>
                         <Link
                             to="/about"

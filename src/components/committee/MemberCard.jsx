@@ -8,10 +8,13 @@ const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
     // Featured Card (President)
     if (isFeatured) {
         return (
-            <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 max-w-sm mx-auto">
+            <div
+                onClick={() => onContactClick(member)}
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 max-w-sm mx-auto cursor-pointer group"
+            >
                 <div className="p-6 flex flex-col items-center text-center">
                     <div className="relative mb-4">
-                        <div className="w-32 h-32 bg-white p-1 rounded-full shadow-md">
+                        <div className="w-32 h-32 bg-white p-1 rounded-full shadow-md group-hover:scale-105 transition-transform duration-300">
                             {member.photo ? (
                                 <img
                                     src={member.photo}
@@ -35,13 +38,10 @@ const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
                         </p>
                     )}
 
-                    <button
-                        onClick={() => onContactClick(member)}
-                        className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md hover:shadow-blue-500/20 transition-all flex items-center justify-center gap-2 text-sm"
-                    >
-                        <Mail size={16} />
-                        Contact President
-                    </button>
+                    <div className="w-full py-2.5 bg-blue-600 group-hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md hover:shadow-blue-500/20 transition-all flex items-center justify-center gap-2 text-sm">
+                        <ArrowRight size={16} />
+                        View Profile
+                    </div>
                 </div>
             </div>
         );
@@ -50,7 +50,10 @@ const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
     // Compact Card (General Committee)
     if (isCompact) {
         return (
-            <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-4 flex items-center gap-4 group hover:border-blue-100">
+            <div
+                onClick={() => onContactClick(member)}
+                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 p-4 flex items-center gap-4 group hover:border-blue-100 cursor-pointer"
+            >
                 <div className="flex-shrink-0">
                     {member.photo ? (
                         <img
@@ -70,19 +73,19 @@ const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
                     <p className="text-xs text-gray-500 truncate">{member.role}</p>
                 </div>
 
-                <button
-                    onClick={() => onContactClick(member)}
-                    className="flex-shrink-0 text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors flex items-center gap-1 text-xs font-semibold"
-                >
-                    Contact <ArrowRight size={14} />
-                </button>
+                <div className="flex-shrink-0 text-gray-400 group-hover:text-blue-600 transition-colors">
+                    <ChevronRight size={18} />
+                </div>
             </div>
         );
     }
 
     // Standard Card (Senior Officers)
     return (
-        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col h-full group">
+        <div
+            onClick={() => onContactClick(member)}
+            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col h-full group cursor-pointer"
+        >
             <div className="p-6 flex flex-col items-center flex-grow">
                 <div className="mb-4 relative">
                     <div className="w-24 h-24 rounded-full bg-gray-50 p-1 shadow-inner overflow-hidden">
@@ -105,13 +108,9 @@ const MemberCard = ({ member, onContactClick, variant = 'standard' }) => {
 
                 {/* Simplified bio for standard card */}
                 <div className="mt-auto w-full pt-4 border-t border-gray-50">
-                    <button
-                        onClick={() => onContactClick(member)}
-                        className="w-full py-2 bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-700 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2"
-                    >
-                        <Mail size={16} />
-                        Contact
-                    </button>
+                    <div className="w-full py-2 bg-gray-50 group-hover:bg-blue-50 text-gray-700 group-hover:text-blue-700 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2">
+                        View Details
+                    </div>
                 </div>
             </div>
         </div>
