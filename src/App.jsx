@@ -19,6 +19,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const SponsorsPage = lazy(() => import('./features/finance/pages/SponsorsPage'));
 const FinanceDashboard = lazy(() => import('./features/finance/pages/FinanceDashboard'));
 const ExpensesPage = lazy(() => import('./features/finance/pages/ExpensesPage'));
+const MembersPage = lazy(() => import('./features/members/pages/MembersPage'));
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="contact" element={<Contact />} />
               <Route path="sponsors" element={<SponsorsPage />} />
+              <Route path="members" element={<MembersPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="/login" element={<Login />} />
@@ -40,6 +42,7 @@ function App() {
             {/* Admin / Finance Routes - Placeholder for protected routes */}
             <Route path="/admin/finance" element={<FinanceDashboard />} />
             <Route path="/admin/finance/expenses" element={<ExpensesPage />} />
+
           </Routes>
         </Suspense>
       </ErrorBoundary>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { committeeMembers } from '../data/committee';
 import MemberCard from '../components/committee/MemberCard';
-import Modal from '../components/ui/Modal';
-import { User, Mail, Phone, Search, ArrowRight } from 'lucide-react';
+import CommitteeMemberProfile from '../components/committee/CommitteeMemberProfile';
+import { User, Search } from 'lucide-react';
 
 const Committee = () => {
     const [selectedMember, setSelectedMember] = useState(null);
@@ -123,74 +123,10 @@ const Committee = () => {
             )}
 
             {/* Contact Modal */}
-            <Modal
-                isOpen={!!selectedMember}
+            <CommitteeMemberProfile
+                member={selectedMember}
                 onClose={() => setSelectedMember(null)}
-                title="Contact Member"
-            >
-                {selectedMember && (
-                    <div className="flex flex-col items-center">
-                        <div className="relative mb-6">
-                            <div className="absolute inset-0 bg-blue-100 rounded-full scale-110 blur-sm"></div>
-                            <div className="relative z-10 w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg bg-white">
-                                {selectedMember.photo ? (
-                                    <img
-                                        src={selectedMember.photo}
-                                        alt={selectedMember.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center bg-gray-50 text-gray-400">
-                                        <User size={64} />
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">{selectedMember.name}</h3>
-                        <p className="text-blue-600 font-medium text-lg mb-6 flex items-center gap-2">
-                            {selectedMember.tier === 1 && <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full">Lead</span>}
-                            {selectedMember.role}
-                        </p>
-
-                        {selectedMember.bio && (
-                            <p className="text-gray-600 text-center mb-8 max-w-sm text-sm leading-relaxed">
-                                {selectedMember.bio}
-                            </p>
-                        )}
-
-                        <div className="w-full space-y-3">
-                            <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 space-y-3">
-                                <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Details</h4>
-                                {selectedMember.contact?.email && (
-                                    <a href={`mailto:${selectedMember.contact?.email}`} className="flex items-center gap-3 p-2 hover:bg-white rounded-lg transition-colors group">
-                                        <div className="p-2 bg-white rounded-full shadow-sm text-gray-400 group-hover:text-blue-500 transition-colors">
-                                            <Mail size={18} />
-                                        </div>
-                                        <div className="flex-grow min-w-0">
-                                            <p className="text-xs text-gray-400">Email</p>
-                                            <p className="font-medium text-gray-900 truncate">{selectedMember.contact?.email}</p>
-                                        </div>
-                                        <ArrowRight size={16} className="text-gray-300 group-hover:text-blue-500 opacity-0 group-hover:opacity-100 transition-all" />
-                                    </a>
-                                )}
-                                {selectedMember.contact?.phone && (
-                                    <a href={`tel:${selectedMember.contact?.phone}`} className="flex items-center gap-3 p-2 hover:bg-white rounded-lg transition-colors group">
-                                        <div className="p-2 bg-white rounded-full shadow-sm text-gray-400 group-hover:text-green-500 transition-colors">
-                                            <Phone size={18} />
-                                        </div>
-                                        <div className="flex-grow min-w-0">
-                                            <p className="text-xs text-gray-400">Phone</p>
-                                            <p className="font-medium text-gray-900 truncate">{selectedMember.contact?.phone}</p>
-                                        </div>
-                                        <ArrowRight size={16} className="text-gray-300 group-hover:text-blue-500 opacity-0 group-hover:opacity-100 transition-all" />
-                                    </a>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </Modal>
+            />
         </div>
     );
 };
