@@ -20,6 +20,7 @@ const SponsorsPage = lazy(() => import('./features/finance/pages/SponsorsPage'))
 const FinanceDashboard = lazy(() => import('./features/finance/pages/FinanceDashboard'));
 const ExpensesPage = lazy(() => import('./features/finance/pages/ExpensesPage'));
 const MembersPage = lazy(() => import('./features/members/pages/MembersPage'));
+const GovernanceDashboard = lazy(() => import('./features/governance/pages/GovernanceDashboard'));
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
             <Route path="/admin/finance" element={<FinanceDashboard />} />
             <Route path="/admin/finance/expenses" element={<ExpensesPage />} />
 
+            {/* Governance Routes */}
+            <Route path="/governance" element={<GovernanceDashboard />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
