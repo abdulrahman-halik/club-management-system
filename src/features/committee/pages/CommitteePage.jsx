@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { committeeMembers } from '../data/committee';
-import MemberCard from '../components/committee/MemberCard';
-import CommitteeMemberProfile from '../components/committee/CommitteeMemberProfile';
+import { committeeMembers } from '../../../data/committee';
+import MemberCard from '../../../components/committee/MemberCard';
+import CommitteeMemberProfile from '../../../components/committee/CommitteeMemberProfile';
 import { User, Search } from 'lucide-react';
 
 const Committee = () => {
