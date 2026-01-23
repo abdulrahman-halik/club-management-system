@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import NewsletterSignup from '../components/features/NewsletterSignup';
+import NewsletterSignup from '../../../components/features/NewsletterSignup';
 import { MapPin, Eye, Target } from 'lucide-react';
-import studyImg from '../assets/images/study.jpeg';
-import stadiumImg from '../assets/images/stadium.jpeg';
-import communityImg from '../assets/images/community.jpeg';
-import useIntersectionObserver from '../hooks/useIntersectionObserver';
+import useIntersectionObserver from '../../../hooks/useIntersectionObserver';
 
-const heroImages = [
-    stadiumImg,
-    communityImg,
-    studyImg,
-    stadiumImg, // Duplicated to reach 5 as requested
-    communityImg // Duplicated to reach 5 as requested
-];
+import { community, stadium, study } from '../../../assets/images/assets';
+
+const heroImages = [community, stadium, study];
+
+
 
 const AnimatedSection = ({ children, className = '', delay = 0 }) => {
     const [ref, isVisible] = useIntersectionObserver({
@@ -114,8 +109,10 @@ const Home = () => {
                                     <div className="relative h-56 overflow-hidden">
                                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
                                         <img
-                                            src={studyImg}
+                                            src={study}
                                             alt="Academic Classes"
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                                         />
                                     </div>
@@ -136,8 +133,10 @@ const Home = () => {
                                     <div className="relative h-56 overflow-hidden">
                                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
                                         <img
-                                            src={stadiumImg}
+                                            src={stadium}
                                             alt="Cricket Matches"
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                                         />
                                     </div>
@@ -158,8 +157,10 @@ const Home = () => {
                                     <div className="relative h-56 overflow-hidden">
                                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
                                         <img
-                                            src={communityImg}
+                                            src={community}
                                             alt="Cultural Events"
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                                         />
                                     </div>

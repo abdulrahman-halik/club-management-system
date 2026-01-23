@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logos/logo1.png';
+import logo from '../../../assets/logos/logo1.png';
 import { Target, Users, Trophy } from 'lucide-react';
 
 const About = () => {
