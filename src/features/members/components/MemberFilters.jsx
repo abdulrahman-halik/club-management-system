@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search, Filter } from 'lucide-react';
-import { MEMBERSHIP_TYPES } from '../../../data/members';
+import { MEMBERSHIP_TYPES } from '../membersData';
 
 const MemberFilters = ({ searchQuery, setSearchQuery, filterType, setFilterType }) => {
     return (

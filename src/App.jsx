@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/layout/Layout';
+import MainLayout from './components/layout/MainLayout';
 import ScrollToTop from './components/layout/ScrollToTop';
 import LoadingSpinner from './components/ui/LoadingSpinner';
 import ErrorBoundary from './components/ui/ErrorBoundary';
@@ -9,33 +9,37 @@ import './index.css';
 // Lazy load pages
 const Home = lazy(() => import('./features/public/pages/Home'));
 const About = lazy(() => import('./features/public/pages/About'));
-const Committee = lazy(() => import('./features/committee/pages/CommitteePage'));
-const Login = lazy(() => import('./features/public/pages/Login'));
-const Register = lazy(() => import('./features/public/pages/Register'));
+const Committee = lazy(() => import('./features/public/pages/Committee'));
+const Login = lazy(() => import('./features/auth/pages/LoginPage'));
+const Register = lazy(() => import('./features/auth/pages/RegisterPage'));
 const Contact = lazy(() => import('./features/public/pages/Contact'));
+const Events = lazy(() => import('./features/public/pages/Events'));
 const NotFound = lazy(() => import('./features/public/pages/NotFound'));
+const News = lazy(() => import('./features/public/pages/News'));
+const Sponsors = lazy(() => import('./features/public/pages/Sponsors'));
+const LiveTelecast = lazy(() => import('./features/live/LiveTelecastPage'));
 
 // Finance Pages
-const SponsorsPage = lazy(() => import('./features/finance/pages/SponsorsPage'));
+// const SponsorsPage = lazy(() => import('./features/finance/pages/SponsorsPage')); // Replaced by public Sponsors page
 const FinanceDashboard = lazy(() => import('./features/finance/pages/FinanceDashboard'));
 const ExpensesPage = lazy(() => import('./features/finance/pages/ExpensesPage'));
-const MembersPage = lazy(() => import('./features/members/pages/MembersPage'));
-const GovernanceDashboard = lazy(() => import('./features/governance/pages/GovernanceDashboard'));
+const MembersPage = lazy(() => import('./features/members/MembersPage'));
+const MeetingsPage = lazy(() => import('./features/meetings/MeetingsPage'));
 
 // Inventory Pages
-const InventoryPage = lazy(() => import('./features/inventory/pages/InventoryPage'));
+const InventoryPage = lazy(() => import('./features/inventory/InventoryPage'));
 
 // Admin Pages
 const AdminLayout = lazy(() => import('./features/admin/layouts/AdminLayout'));
-const AdminDashboard = lazy(() => import('./features/admin/pages/DashboardPage'));
+const AdminDashboard = lazy(() => import('./features/admin/pages/Dashboard'));
 const NewsManagementPage = lazy(() => import('./features/admin/pages/cms/NewsManagementPage'));
 const FixtureManagementPage = lazy(() => import('./features/admin/pages/cms/FixtureManagementPage'));
 const DocumentsPage = lazy(() => import('./features/admin/pages/cms/DocumentsPage'));
-const UserManagementPage = lazy(() => import('./features/admin/pages/users/UserManagementPage'));
-const BroadcastPage = lazy(() => import('./features/admin/pages/comms/BroadcastPage'));
+const UserManagementPage = lazy(() => import('./features/admin/pages/Users'));
+const BroadcastPage = lazy(() => import('./features/admin/pages/Communications'));
 
 // Security
-const ProtectedRoute = lazy(() => import('./components/auth/ProtectedRoute'));
+const ProtectedRoute = lazy(() => import('./features/auth/components/ProtectedRoute'));
 
 function App() {
   return (
@@ -44,14 +48,25 @@ function App() {
         <ScrollToTop />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            <Route path="/" element={<Layout />}>
+            <Route path="/" element={<MainLayout />}>
               <Route index element={<Home />} />
               <Route path="committee" element={<Committee />} />
               <Route path="about" element={<About />} />
               <Route path="contact" element={<Contact />} />
-              <Route path="sponsors" element={<SponsorsPage />} />
-              <Route path="members" element={<MembersPage />} />
-              <Route path="inventory" element={<InventoryPage />} />
+              <Route path="events" element={<Events />} />
+              <Route path="sponsors" element={<Sponsors />} />
+              <Route path="news" element={<News />} />
+              <Route path="live" element={<LiveTelecast />} />
+              <Route path="members" element={
+                <ProtectedRoute allowedRoles={['member', 'committee', 'admin']}>
+                  <MembersPage />
+                </ProtectedRoute>
+              } />
+              <Route path="inventory" element={
+                <ProtectedRoute allowedRoles={['member', 'committee', 'admin']}>
+                  <InventoryPage />
+                </ProtectedRoute>
+              } />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="/login" element={<Login />} />
@@ -77,8 +92,13 @@ function App() {
               <Route path="comms" element={<BroadcastPage />} />
             </Route>
 
-            {/* Governance Routes */}
-            <Route path="/governance" element={<GovernanceDashboard />} />
+            {/* Governance Routes - Meetings (View for Members, Create/Update for Committee/Admin) */}
+            {/* Note: Specific permission logic for create/update should be inside MeetingsPage or its sub-components */}
+            <Route path="/meetings" element={
+              <ProtectedRoute allowedRoles={['member', 'committee', 'admin']}>
+                <MeetingsPage />
+              </ProtectedRoute>
+            } />
           </Routes>
         </Suspense>
       </ErrorBoundary>

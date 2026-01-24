@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import NewsletterSignup from '../../../components/features/NewsletterSignup';
+import { Link } from 'react-router-dom';
+import NewsletterSignup from '../components/NewsletterSignup';
 import { MapPin, Eye, Target } from 'lucide-react';
 import useIntersectionObserver from '../../../hooks/useIntersectionObserver';
 
@@ -75,9 +76,9 @@ const Home = () => {
                     </AnimatedSection>
                     <AnimatedSection delay={400}>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <a href="#join" className="bg-white text-blue-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition shadow-lg inline-block transform hover:scale-105 active:scale-95">
+                            <Link to="/register" className="bg-white text-blue-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition shadow-lg inline-block transform hover:scale-105 active:scale-95">
                                 Join the Club
-                            </a>
+                            </Link>
                             <a href="#about" className="border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white/10 transition inline-block transform hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
