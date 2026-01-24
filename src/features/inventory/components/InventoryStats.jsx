@@ -1,6 +1,7 @@
 import React from 'react';
 import { AlertTriangle, PackageCheck, Activity } from 'lucide-react';
 
+// eslint-disable-next-line no-unused-vars
 const StatCard = ({ title, value, subtext, icon: Icon, alert }) => (
     <div className={`bg-white rounded-xl shadow-sm border p-4 flex items-start space-x-4 ${alert ? 'border-red-200 bg-red-50' : 'border-gray-200'}`}>
         <div className={`p-3 rounded-lg ${alert ? 'bg-red-100 text-red-600' : 'bg-blue-50 text-blue-600'}`}>

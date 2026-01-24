@@ -1,35 +1,45 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import Card from '../../../components/ui/Card';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
 import { Upload, X } from 'lucide-react';
 
 const ExpenseClaimForm = ({ onSubmit }) => {
-    const [formData, setFormData] = useState({
-        description: '',
-        category: 'maintenance',
-        amount: '',
-        date: new Date().toISOString().split('T')[0],
+    const expenseSchema = z.object({
+        description: z.string().min(3, "Description must be at least 3 characters"),
+        category: z.enum(['maintenance', 'equipment', 'umpiring', 'catering', 'other']),
+        amount: z.number({ invalid_type_error: "Amount must be a number" }).positive("Amount must be positive"),
+        date: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid date"),
+        file: z.any().optional()
     });
-    const [file, setFile] = useState(null);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
+    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
+        resolver: zodResolver(expenseSchema),
+        defaultValues: {
+            description: '',
+            category: 'maintenance',
+            amount: '',
+            date: new Date().toISOString().split('T')[0],
+            file: null
+        }
+    });
+
+    const file = watch('file');
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
+            setValue('file', e.target.files[0], { shouldValidate: true });
         }
     };
 
-    const removeFile = () => setFile(null);
+    const removeFile = () => setValue('file', null);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const onFormSubmit = (data) => {
         if (onSubmit) {
-            onSubmit({ ...formData, file });
+            onSubmit(data);
         }
     };
 
@@ -40,27 +50,25 @@ const ExpenseClaimForm = ({ onSubmit }) => {
                 <p className="text-gray-500 text-sm mt-1">Fill in the details below to request reimbursement.</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
                 <div className="space-y-6">
-                    <Input
-                        label="Description"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        placeholder="e.g. Grass seeds for new square"
-                        required
-                        className="w-full"
-                    />
+                    <div>
+                        <Input
+                            label="Description"
+                            placeholder="e.g. Grass seeds for new square"
+                            className="w-full"
+                            error={errors.description?.message}
+                            {...register('description')}
+                        />
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5 ml-1">Category</label>
                             <div className="relative">
                                 <select
-                                    name="category"
-                                    value={formData.category}
-                                    onChange={handleChange}
                                     className="w-full appearance-none rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-2.5 text-gray-900 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 cursor-pointer"
+                                    {...register('category')}
                                 >
                                     <option value="maintenance">Ground Maintenance</option>
                                     <option value="equipment">Equipment</option>
@@ -72,29 +80,30 @@ const ExpenseClaimForm = ({ onSubmit }) => {
                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
                             </div>
+                            {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category.message}</p>}
                         </div>
 
-                        <Input
-                            label="Date Incurred"
-                            type="date"
-                            name="date"
-                            value={formData.date}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div>
+                            <Input
+                                label="Date Incurred"
+                                type="date"
+                                error={errors.date?.message}
+                                {...register('date')}
+                            />
+                        </div>
                     </div>
 
-                    <Input
-                        label="Amount"
-                        type="number"
-                        name="amount"
-                        value={formData.amount}
-                        onChange={handleChange}
-                        placeholder="0.00"
-                        min="0"
-                        step="0.01"
-                        required
-                    />
+                    <div>
+                        <Input
+                            label="Amount"
+                            type="number"
+                            placeholder="0.00"
+                            min="0"
+                            step="0.01"
+                            error={errors.amount?.message}
+                            {...register('amount', { valueAsNumber: true })}
+                        />
+                    </div>
                 </div>
 
                 <div>
