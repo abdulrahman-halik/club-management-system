@@ -5,7 +5,7 @@ import * as z from 'zod';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Trophy, Mail, Lock, User, CheckCircle } from 'lucide-react';
 
-const RegisterForm = () => {
+const RegisterForm = ({ onFormSubmit }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -29,6 +29,7 @@ const RegisterForm = () => {
     const onSubmit = (data) => {
         console.log('Registration data:', data);
         // Add actual registration logic here
+        onFormSubmit(data);
     };
 
     return (

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Trophy, Mail, Lock } from 'lucide-react';
 
 
-const LoginForm = () => {
+export default function LoginForm({ onFormSubmit }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const schema = z.object({
@@ -25,15 +25,16 @@ const LoginForm = () => {
     const onSubmit = (data) => {
         console.log('Login attempt:', data);
         // Add actual login logic here
+        onFormSubmit(data);
     };
 
     // Compact Login UI
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 font-sans">
-            <div className="max-w-[850px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row min-h-[500px] lg:h-[550px]">
+            <div className="max-w-212.5 w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row min-h-125 lg:h-137.5">
 
                 {/* Left Side - Blue Branding Section */}
-                <div className="w-full lg:w-[45%] bg-gradient-to-br from-[#1e6091] to-[#164a75] p-6 lg:p-10 text-white relative flex flex-col justify-between">
+                <div className="w-full lg:w-[45%] bg-linear-to-br from-[#1e6091] to-[#164a75] p-6 lg:p-10 text-white relative flex flex-col justify-between">
                     {/* Background decorations */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
                     <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl"></div>
@@ -180,5 +181,3 @@ const LoginForm = () => {
         </div>
     );
 };
-
-export default Login;
