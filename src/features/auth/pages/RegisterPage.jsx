@@ -19,7 +19,7 @@ export default function RegisterPage() {
         <div className="register-page">
             <h1>Create Account</h1>
             {error && <p className="error">{error}</p>}
-            <RegisterForm onSubmit={handleRegister} loading={loading} />
+            <RegisterForm onFormSubmit={(userData) => handleRegister(userData)} loading={loading} />
             <Link to="/login">Already have an account? Login</Link>
         </div>
     );

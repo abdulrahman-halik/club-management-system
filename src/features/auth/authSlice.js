@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 
 const initialState = {
@@ -40,30 +40,28 @@ export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.acti
 export default authSlice.reducer;
 
 
-// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 // // Async actions
-// export const loginUser = createAsyncThunk(
-//   'auth/login',
-//   async (credentials) => {
-//     const response = await fetch('/api/login', {
-//       method: 'POST',
-//       body: JSON.stringify(credentials)
-//     });
-//     return response.json();
-//   }
-// );
+export const loginUser = createAsyncThunk(
+  'auth/login',
+  async (credentials) => {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify(credentials)
+    });
+    return response.json();
+  }
+);
 
-// export const registerUser = createAsyncThunk(
-//   'auth/register',
-//   async (userData) => {
-//     const response = await fetch('/api/register', {
-//       method: 'POST',
-//       body: JSON.stringify(userData)
-//     });
-//     return response.json();
-//   }
-// );
+export const registerUser = createAsyncThunk(
+  'auth/register',
+  async (userData) => {
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      body: JSON.stringify(userData)
+    });
+    return response.json();
+  }
+);
 
 // // Slice
 // const authSlice = createSlice({
