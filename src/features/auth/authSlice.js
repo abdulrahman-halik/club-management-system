@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import apiClient from '@/lib/api-client';
 
 const initialState = {
     user: null,
@@ -44,8 +44,7 @@ export default authSlice.reducer;
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials) => {
-    const response = await fetch('/api/login', {
-      method: 'POST',
+    const response = await apiClient.post('/login', {
       body: JSON.stringify(credentials)
     });
     return response.json();
@@ -55,8 +54,7 @@ export const loginUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   'auth/register',
   async (userData) => {
-    const response = await fetch('/api/register', {
-      method: 'POST',
+    const response = await apiClient.post('/register', {
       body: JSON.stringify(userData)
     });
     return response.json();
