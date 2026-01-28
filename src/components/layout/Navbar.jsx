@@ -137,7 +137,7 @@ const Navbar = () => {
         // Protected Links
         { name: 'Dashboard', path: '/dashboard', requiredAuth: true }, // Assuming separate dashboard page or profile
         { name: 'Members', path: '/members', requiredAuth: true },
-        // { name: 'Inventory', path: '/inventory', requiredAuth: true }, // Optional to show in nav
+        { name: 'Inventory', path: '/inventory', requiredAuth: true },
         { name: 'Meetings', path: '/meetings', requiredAuth: true },
     ];
 

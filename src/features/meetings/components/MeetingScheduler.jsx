@@ -60,57 +60,57 @@ const MeetingScheduler = () => {
                 {/* Potentially add filters here in future */}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 {upcomingMeetings.map((meeting) => (
-                    <Card key={meeting.id} className="hover:shadow-md transition-shadow duration-300 border-l-4 border-l-blue-500 overflow-hidden">
-                        <div className="p-5 space-y-4">
+                    <Card key={meeting.id} className="hover:shadow-md transition-shadow duration-300 border-l-4 border-l-blue-500 overflow-hidden flex flex-col h-full">
+                        <div className="p-4 sm:p-5 space-y-4 flex flex-col h-full">
                             {/* Header */}
                             <div className="flex justify-between items-start gap-4">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <Badge variant={getBadgeVariant(meeting.type)}>{meeting.type}</Badge>
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                                        <Badge variant={getBadgeVariant(meeting.type)} className="text-xs">{meeting.type}</Badge>
                                         {meeting.isVirtual && (
-                                            <span className="flex items-center text-xs font-medium text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">
+                                            <span className="flex items-center text-xs font-medium text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100 whitespace-nowrap">
                                                 <Video size={12} className="mr-1" /> Virtual
                                             </span>
                                         )}
                                     </div>
-                                    <h3 className="text-xl font-bold text-gray-800 leading-tight">{meeting.title}</h3>
+                                    <h3 className="text-lg sm:text-xl font-bold text-gray-800 leading-snug break-words">{meeting.title}</h3>
                                 </div>
-                                <div className="text-center bg-blue-50 p-2 rounded-lg min-w-[3.5rem] border border-blue-100">
-                                    <span className="block text-xs font-bold text-blue-800 uppercase">{new Date(meeting.date).toLocaleString('default', { month: 'short' })}</span>
-                                    <span className="block text-2xl font-bold text-blue-600">{new Date(meeting.date).getDate()}</span>
+                                <div className="text-center bg-blue-50 p-2 rounded-lg min-w-[3.5rem] border border-blue-100 shrink-0">
+                                    <span className="block text-[10px] sm:text-xs font-bold text-blue-800 uppercase">{new Date(meeting.date).toLocaleString('default', { month: 'short' })}</span>
+                                    <span className="block text-xl sm:text-2xl font-bold text-blue-600 leading-none mt-0.5">{new Date(meeting.date).getDate()}</span>
                                 </div>
                             </div>
 
                             {/* Details */}
                             <div className="space-y-2 text-sm text-gray-600">
                                 <div className="flex items-center gap-2">
-                                    <Clock size={16} className="text-gray-400" />
+                                    <Clock size={16} className="text-gray-400 shrink-0" />
                                     <span>{meeting.time}</span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <MapPin size={16} className="text-gray-400" />
-                                    <span>{meeting.location}</span>
+                                <div className="flex items-start gap-2">
+                                    <MapPin size={16} className="text-gray-400 shrink-0 mt-0.5" />
+                                    <span className="break-words">{meeting.location}</span>
                                 </div>
                             </div>
 
                             {/* Agenda Preview */}
-                            <div className="bg-gray-50 rounded-lg p-3">
+                            <div className="bg-gray-50 rounded-lg p-3 flex-grow">
                                 <div className="flex items-center gap-2 text-gray-700 font-semibold mb-2 text-sm">
-                                    <FileText size={14} />
+                                    <FileText size={14} className="shrink-0" />
                                     <span>Agenda Highlights:</span>
                                 </div>
                                 <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 pl-1">
                                     {meeting.agenda.map((item, idx) => (
-                                        <li key={idx} className="line-clamp-1">{item}</li>
+                                        <li key={idx} className="line-clamp-1 break-all mx-1">{item}</li>
                                     ))}
                                 </ul>
                             </div>
 
                             {/* Action */}
-                            <div className="pt-2">
-                                <button className="w-full sm:w-auto flex items-center justify-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors group">
+                            <div className="pt-2 mt-auto">
+                                <button className="w-full flex items-center justify-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-4 py-3 sm:py-2 rounded-lg transition-colors group border border-transparent hover:border-blue-100 active:bg-blue-100">
                                     View Full Details <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                 </button>
                             </div>
@@ -119,11 +119,11 @@ const MeetingScheduler = () => {
                 ))}
 
                 {/* Placeholder for no meetings or 'View All' calendar link */}
-                <div className="flex items-center justify-center p-6 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50/50 text-gray-400 text-center min-h-[200px]">
-                    <div>
-                        <Calendar size={48} className="mx-auto mb-2 opacity-50" />
-                        <p className="font-medium">Subscribe to Calendar</p>
-                        <p className="text-xs mt-1">Add club events to your personal calendar.</p>
+                <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50/50 text-gray-400 text-center min-h-[200px] hover:border-blue-200 hover:bg-blue-50/10 transition-colors cursor-pointer group">
+                    <div className="group-hover:scale-105 transition-transform duration-300">
+                        <Calendar size={48} className="mx-auto mb-3 opacity-50 group-hover:text-blue-400 group-hover:opacity-100 transition-all" />
+                        <p className="font-medium text-gray-500 group-hover:text-blue-600">Subscribe to Calendar</p>
+                        <p className="text-xs mt-1 max-w-[200px] mx-auto">Add club events to your personal calendar.</p>
                     </div>
                 </div>
             </div>

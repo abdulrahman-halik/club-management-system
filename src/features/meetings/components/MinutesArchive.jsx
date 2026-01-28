@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { FileText, Download, Search, Filter, FolderOpen, Calendar } from 'lucide-react';
+import { FileText, Download, Search, Filter, FolderOpen, Calendar, ArrowRight } from 'lucide-react';
 import Card from '../../../components/ui/Card';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
+import Badge from '../../../components/ui/Badge';
 
 const MinutesArchive = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedYear, setSelectedYear] = useState('2025');
+    const [selectedYear, setSelectedYear] = useState('All');
 
     // Mock Data for Minutes
     const minutesData = [
@@ -19,7 +20,7 @@ const MinutesArchive = () => {
         { id: 202, title: 'AGM 2024 Minutes', date: '2024-03-20', type: 'AGM', year: '2024', size: '4.5 MB' },
     ];
 
-    const years = ['2025', '2024', '2023'];
+    const years = ['All', '2025', '2024', '2023'];
 
     const filteredMinutes = minutesData.filter(doc => {
         const matchesSearch = doc.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -27,8 +28,16 @@ const MinutesArchive = () => {
         return matchesSearch && matchesYear;
     });
 
+    const getBadgeVariant = (type) => {
+        switch (type) {
+            case 'AGM': return 'primary';
+            case 'Committee': return 'secondary';
+            default: return 'outline';
+        }
+    };
+
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
             <div className="flex flex-col md:flex-row justify-between items-end md:items-center gap-4">
                 <div>
                     <h2 className="text-2xl font-bold text-blue-900 tracking-tight">Minutes Archive</h2>
@@ -37,30 +46,31 @@ const MinutesArchive = () => {
             </div>
 
             {/* Search and Filters Toolbar */}
-            <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
-                <div className="relative w-full md:max-w-md">
-                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+            <div className="bg-white p-1 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-2 items-center justify-between">
+                <div className="relative w-full md:max-w-md p-2">
+                    <span className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-gray-400">
                         <Search size={18} />
                     </span>
-                    <Input
+                    <input
+                        type="text"
                         placeholder="Search minutes..."
-                        className="pl-10"
+                        className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
 
-                <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-                    <span className="text-sm font-medium text-gray-600 whitespace-nowrap flex items-center gap-1">
-                        <Filter size={16} /> Filter by Year:
+                <div className="flex items-center gap-1 w-full md:w-auto overflow-x-auto p-2">
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wider mr-2 whitespace-nowrap">
+                        Year:
                     </span>
                     {years.map(year => (
                         <button
                             key={year}
                             onClick={() => setSelectedYear(year)}
-                            className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors whitespace-nowrap ${selectedYear === year
-                                    ? 'bg-blue-100 text-blue-700 hover:bg-blue-200'
-                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-all whitespace-nowrap ${selectedYear === year
+                                ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
+                                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                                 }`}
                         >
                             {year}
@@ -69,42 +79,54 @@ const MinutesArchive = () => {
                 </div>
             </div>
 
-            {/* Documents List */}
-            <div className="grid gap-4">
+            {/* Documents Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredMinutes.length > 0 ? (
                     filteredMinutes.map((doc) => (
-                        <div key={doc.id} className="group bg-white rounded-xl border border-gray-200 p-4 hover:shadow-md hover:border-blue-200 transition-all duration-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <div className="flex items-start gap-4">
-                                <div className={`p-3 rounded-lg ${doc.type === 'AGM' ? 'bg-amber-50 text-amber-600' : 'bg-blue-50 text-blue-600'}`}>
-                                    <FileText size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="text-base font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
-                                        {doc.title}
-                                    </h4>
-                                    <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
-                                        <span className="flex items-center gap-1">
-                                            <Calendar size={14} /> {doc.date}
-                                        </span>
-                                        <span className="text-gray-300">|</span>
-                                        <span className="uppercase text-xs font-bold tracking-wider">{doc.type}</span>
-                                        <span className="text-gray-300">|</span>
-                                        <span>{doc.size}</span>
+                        <div key={doc.id} className="group bg-white rounded-xl border border-gray-200 hover:shadow-xl hover:border-blue-300 transition-all duration-300 flex flex-col h-full overflow-hidden">
+                            <div className="p-5 flex-1 flex flex-col">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div className={`p-3 rounded-xl ${doc.type === 'AGM' ? 'bg-amber-100 text-amber-700' : 'bg-blue-50 text-blue-600'} group-hover:scale-110 transition-transform duration-300`}>
+                                        <FileText size={24} />
                                     </div>
+                                    <Badge variant={getBadgeVariant(doc.type)} className="shadow-sm">{doc.year}</Badge>
+                                </div>
+
+                                <h4 className="text-lg font-bold text-gray-900 group-hover:text-blue-700 transition-colors mb-2 line-clamp-2">
+                                    {doc.title}
+                                </h4>
+
+                                <div className="mt-auto pt-4 flex items-center gap-3 text-xs font-medium text-gray-500">
+                                    <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md border border-gray-100">
+                                        <Calendar size={12} /> {doc.date}
+                                    </span>
+                                    <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md border border-gray-100">
+                                        {doc.size}
+                                    </span>
                                 </div>
                             </div>
 
-                            <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center justify-center gap-2 border-gray-200 text-gray-700 group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:border-blue-200">
-                                <Download size={16} />
-                                <span className="sm:hidden lg:inline">Download PDF</span>
-                            </Button>
+                            <div className="p-4 bg-gray-50 border-t border-gray-100 group-hover:bg-blue-50/50 transition-colors">
+                                <button className="w-full flex items-center justify-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">
+                                    <Download size={16} />
+                                    Download PDF
+                                </button>
+                            </div>
                         </div>
                     ))
                 ) : (
-                    <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-                        <FolderOpen size={48} className="mx-auto text-gray-300 mb-3" />
-                        <h3 className="text-lg font-medium text-gray-900">No documents found</h3>
-                        <p className="text-gray-500">Try adjusting your search or filters.</p>
+                    <div className="col-span-full py-16 text-center bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+                        <div className="bg-white p-4 rounded-full inline-block mb-4 shadow-sm">
+                            <FolderOpen size={40} className="text-gray-300" />
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-900">No documents found</h3>
+                        <p className="text-gray-500 mt-1">Try adjusting your search or selected year.</p>
+                        <button
+                            onClick={() => { setSearchTerm(''); setSelectedYear('All'); }}
+                            className="mt-4 text-blue-600 hover:text-blue-800 text-sm font-semibold"
+                        >
+                            Clear all filters
+                        </button>
                     </div>
                 )}
             </div>
