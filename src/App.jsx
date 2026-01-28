@@ -74,7 +74,7 @@ function App() {
 
             {/* Admin Back Office Routes (Protected) */}
             <Route path="/admin" element={
-              <ProtectedRoute allowedRoles={['admin', 'editor']}>
+              <ProtectedRoute allowedRoles={['admin', 'editor', 'committee']}>
                 <AdminLayout />
               </ProtectedRoute>
             }>

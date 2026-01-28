@@ -4,9 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Trophy, Mail, Lock } from 'lucide-react';
+import Alert from '../../../components/ui/Alert';
 
 
-export default function LoginForm({ onFormSubmit }) {
+export default function LoginForm({ onFormSubmit, loading, apiError }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const schema = z.object({
@@ -30,8 +31,8 @@ export default function LoginForm({ onFormSubmit }) {
 
     // Compact Login UI
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 font-sans">
-            <div className="max-w-212.5 w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row min-h-125 lg:h-137.5">
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 font-sans">
+            <div className="max-w-212.5 w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row min-h-125">
 
                 {/* Left Side - Blue Branding Section */}
                 <div className="w-full lg:w-[45%] bg-linear-to-br from-[#1e6091] to-[#164a75] p-6 lg:p-10 text-white relative flex flex-col justify-between">
@@ -78,7 +79,7 @@ export default function LoginForm({ onFormSubmit }) {
                 </div>
 
                 {/* Right Side - Login Form */}
-                <div className="w-full lg:w-[55%] p-6 lg:p-10 flex flex-col justify-center bg-white relative">
+                <div className="w-full lg:w-[55%] p-6 lg:p-8 flex flex-col justify-center bg-white relative">
                     <div className="max-w-sm w-full mx-auto">
                         <div className="text-center mb-6">
                             <div className="w-10 h-10 bg-blue-50/50 rounded-xl shadow-sm flex items-center justify-center mx-auto mb-3 text-[#1e6091]">
@@ -87,6 +88,10 @@ export default function LoginForm({ onFormSubmit }) {
                             <h2 className="text-xl font-bold text-gray-900 mb-1">Welcome Back</h2>
                             <p className="text-gray-500 text-xs">Please enter your details to sign in</p>
                         </div>
+
+                        {apiError && (
+                            <Alert type="error" message={apiError} className="mb-6" />
+                        )}
 
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
                             <div>
@@ -142,9 +147,10 @@ export default function LoginForm({ onFormSubmit }) {
 
                             <button
                                 type="submit"
-                                className="w-full bg-[#1e6091] text-white py-2.5 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 hover:bg-[#164a75] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                                disabled={loading}
+                                className="w-full bg-[#1e6091] text-white py-2.5 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 hover:bg-[#164a75] transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed"
                             >
-                                Login
+                                {loading ? 'Logging in...' : 'Login'}
                             </button>
                         </form>
 
@@ -175,6 +181,15 @@ export default function LoginForm({ onFormSubmit }) {
                                 </svg>
                             </button>
                         </div>
+                    </div>
+
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-gray-500">
+                            Don't have an account?{' '}
+                            <Link to="/register" className="font-semibold text-[#1e6091] hover:text-[#164a75] transition-colors">
+                                Register now
+                            </Link>
+                        </p>
                     </div>
                 </div>
             </div>

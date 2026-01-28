@@ -6,6 +6,7 @@ export const useSocket = (url) => {
 
     useEffect(() => {
         const newSocket = io(url);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSocket(newSocket);
 
         return () => newSocket.close();

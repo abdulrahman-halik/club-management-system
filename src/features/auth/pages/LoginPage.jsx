@@ -17,12 +17,10 @@ export default function LoginPage() {
         }
     };
     return (
-        <div className="login-page">
-            <h1>Login</h1>
-            {error && <p className="error">{error}</p>}
-            <LoginForm onFormSubmit={(credentials) => handleLogin(credentials)} loading={loading} />
-            <Link to="/forgot-password">Forgot Password?</Link>
-            <Link to="/register">Don't have an account? Register</Link>
-        </div>
+        <LoginForm
+            onFormSubmit={(credentials) => handleLogin(credentials)}
+            loading={loading}
+            apiError={error}
+        />
     );
 };

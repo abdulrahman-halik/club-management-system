@@ -4,8 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Trophy, Mail, Lock, User, CheckCircle } from 'lucide-react';
+import Alert from '../../../components/ui/Alert';
 
-const RegisterForm = ({ onFormSubmit }) => {
+const RegisterForm = ({ onFormSubmit, loading, apiError }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -33,7 +34,7 @@ const RegisterForm = ({ onFormSubmit }) => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 font-sans">
+        <div className="min-h-screen flex items-center justify-center bg-gray-50  font-sans">
             <div className="max-w-[900px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row min-h-[600px]">
 
                 {/* Left Side - Blue Branding Section */}
@@ -99,6 +100,10 @@ const RegisterForm = ({ onFormSubmit }) => {
                             <h2 className="text-2xl font-bold text-gray-900 mb-2">Create Account</h2>
                             <p className="text-gray-500 text-sm">Please fill in the details below to sign up</p>
                         </div>
+
+                        {apiError && (
+                            <Alert type="error" message={apiError} className="mb-6" />
+                        )}
 
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
@@ -185,9 +190,10 @@ const RegisterForm = ({ onFormSubmit }) => {
                             <div className="pt-2">
                                 <button
                                     type="submit"
-                                    className="w-full bg-[#1e6091] text-white py-2.5 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 hover:bg-[#164a75] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                                    disabled={loading}
+                                    className="w-full bg-[#1e6091] text-white py-2.5 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 hover:bg-[#164a75] transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    Create Account
+                                    {loading ? 'Creating Account...' : 'Create Account'}
                                 </button>
                             </div>
                         </form>
@@ -217,6 +223,15 @@ const RegisterForm = ({ onFormSubmit }) => {
                                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                 </svg>
                             </button>
+                        </div>
+
+                        <div className="mt-8 text-center">
+                            <p className="text-sm text-gray-500">
+                                Already have an account?{' '}
+                                <Link to="/login" className="font-semibold text-[#1e6091] hover:text-[#164a75] transition-colors">
+                                    Sign in
+                                </Link>
+                            </p>
                         </div>
                     </div>
                 </div>
