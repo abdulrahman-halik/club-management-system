@@ -29,6 +29,10 @@ const MeetingsPage = lazy(() => import('./features/meetings/MeetingsPage'));
 // Inventory Pages
 const InventoryPage = lazy(() => import('./features/inventory/InventoryPage'));
 
+// Tournament Pages
+const TournamentListPage = lazy(() => import('./features/tournaments/pages/TournamentListPage'));
+const TournamentDashboard = lazy(() => import('./features/tournaments/pages/TournamentDashboard'));
+
 // Admin Pages
 const AdminLayout = lazy(() => import('./features/admin/layouts/AdminLayout'));
 const AdminDashboard = lazy(() => import('./features/admin/pages/Dashboard'));
@@ -57,6 +61,8 @@ function App() {
               <Route path="sponsors" element={<Sponsors />} />
               <Route path="news" element={<News />} />
               <Route path="live" element={<LiveTelecast />} />
+              <Route path="tournaments" element={<TournamentListPage />} />
+              <Route path="tournaments/:tournamentId/*" element={<TournamentDashboard />} />
               <Route path="members" element={
                 <ProtectedRoute allowedRoles={['member', 'committee', 'admin']}>
                   <MembersPage />
