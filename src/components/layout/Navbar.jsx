@@ -8,7 +8,6 @@
 
 //     const navLinks = [
 //         { name: 'Home', path: '/' },
-//         { name: 'Match Centre', path: '/live' },
 //         { name: 'News', path: '/news' },
 //         { name: 'Events', path: '/events' },
 //         { name: 'Committee', path: '/committee' },
@@ -127,7 +126,6 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'Home', path: '/', public: true },
-        { name: 'Match Centre', path: '/live', public: true },
         { name: 'News', path: '/news', public: true },
         { name: 'Events', path: '/events', public: true },
         { name: 'Committee', path: '/committee', public: true },

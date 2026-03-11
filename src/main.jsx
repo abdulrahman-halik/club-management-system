@@ -5,6 +5,11 @@ import App from './App.jsx'
 
 import { Provider } from 'react-redux'
 import { store } from './store/store'
+import { setupMockApi, setupMockApiRequest } from './lib/mockApi'
+
+// Initialize mock API for testing
+setupMockApi()
+setupMockApiRequest()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -17,7 +17,6 @@ const Events = lazy(() => import('./features/public/pages/Events'));
 const NotFound = lazy(() => import('./features/public/pages/NotFound'));
 const News = lazy(() => import('./features/public/pages/News'));
 const Sponsors = lazy(() => import('./features/public/pages/Sponsors'));
-const LiveTelecast = lazy(() => import('./features/live/LiveTelecastPage'));
 
 // Finance Pages
 // const SponsorsPage = lazy(() => import('./features/finance/pages/SponsorsPage')); // Replaced by public Sponsors page
@@ -60,7 +59,6 @@ function App() {
               <Route path="events" element={<Events />} />
               <Route path="sponsors" element={<Sponsors />} />
               <Route path="news" element={<News />} />
-              <Route path="live" element={<LiveTelecast />} />
               <Route path="tournaments" element={<TournamentListPage />} />
               <Route path="tournaments/:tournamentId/*" element={<TournamentDashboard />} />
               <Route path="members" element={

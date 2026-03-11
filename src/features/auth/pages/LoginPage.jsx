@@ -14,10 +14,10 @@ export default function LoginPage() {
   const handleLogin = async (credentials) => {
     console.log("Login credentials:", credentials);
 
-    // const result = await dispatch(loginUser(credentials));
-    // if (result.type === "auth/login/fulfilled") {
-    //   navigate("/dashboard");
-    // }
+    const result = await dispatch(loginUser(credentials));
+    if (result.type === "auth/login/fulfilled") {
+      navigate("/dashboard");
+    }
   };
 
   return (
